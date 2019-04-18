@@ -10,7 +10,10 @@ export class SearchBar extends Component {
 
   renderSelectCountries() {
     return (
-      <select className="form-control search_bar">
+      <select
+        className="form-control search_bar"
+        onChange={e => this.onChangeCountry(e)}
+      >
         {this.props.countries.map(c => (
           <option key={c.code} value={c.code}>
             {c.name}
@@ -19,6 +22,10 @@ export class SearchBar extends Component {
       </select>
     );
   }
+
+  onChangeCountry = e => {
+    console.log("on change", e.target.value);
+  };
 
   render() {
     return <form className="form-group">{this.renderSelectCountries()}</form>;

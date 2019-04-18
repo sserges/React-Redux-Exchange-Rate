@@ -11,8 +11,10 @@ export default function(state = initialState, action) {
         ...state,
         countries: getCountriesInfo(action.payload)
       };
+    default:
+      return state;
   }
-  return state;
+  // return state;
 }
 
 function getCountriesInfo(data) {
