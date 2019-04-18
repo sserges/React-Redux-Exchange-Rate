@@ -10,22 +10,32 @@ export class SearchBar extends Component {
 
   renderSelectCountries() {
     return (
-      <select>
-        <option />
+      <select className="form-control search_bar">
+        {this.props.countries.map(c => (
+          <option key={c.code} value={c.code}>
+            {c.name}
+          </option>
+        ))}
       </select>
     );
   }
 
   render() {
-    return <form>{this.renderSelectCountries()}</form>;
+    return <form className="form-group">{this.renderSelectCountries()}</form>;
   }
 }
+
+const mapStateToProps = store => {
+  return {
+    countries: store.countriesReducer.countries
+  };
+};
 
 const mapDispatchToProps = {
   fetchCountries
 };
 
 export default connect(
-  undefined,
+  mapStateToProps,
   mapDispatchToProps
 )(SearchBar);
